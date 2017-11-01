@@ -97,7 +97,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		Recipe quacRecipe = new Recipe();
 		quacRecipe.setDescription("Best Guacamole");
 		quacRecipe.setPrepTime(10);
-		quacRecipe.setCookTime(0);
+		quacRecipe.setCookTime(30);
+		quacRecipe.setSource("20");
+		quacRecipe.setServings(8);
+		quacRecipe.setUrl("http://www.cook.com/guacamole");
 		quacRecipe.setDifficulty(Difficulty.EASY);
 		quacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n"
 				+ "\n" + "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" +  "\n"
@@ -131,6 +134,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
 		tacosRecipe.setCookTime(9);
 		tacosRecipe.setPrepTime(20);
+		tacosRecipe.setServings(9);
+		tacosRecipe.setSource("18");
+		tacosRecipe.setUrl("https://www.google.com");
 		tacosRecipe.setDifficulty(Difficulty.MODERATE);
 
 		tacosRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
