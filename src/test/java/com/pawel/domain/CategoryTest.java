@@ -18,7 +18,7 @@ public class CategoryTest {
 	public void setUp() {
 		this.category = new Category();
 		this.category.setId(id);
-		this.category.setName(name);
+		this.category.setDescription(name);
 	}
 
 	@Test
@@ -28,6 +28,6 @@ public class CategoryTest {
 
 	@Test
 	public void getName() throws Exception {
-		assertEquals(name, category.getName());
+		assertEquals(name, category.getDescription());
 	}
 }

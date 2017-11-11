@@ -81,12 +81,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		UnitOfMeasure pint = pintOptional.get();
 		UnitOfMeasure cups = cupOptional.get();
 
-		Optional<Category> americanOptional = categoryRepository.findByName("American");
+		Optional<Category> americanOptional = categoryRepository.findByDescription("American");
 		if (!americanOptional.isPresent()) {
 			throw new RuntimeException("Expected UDM not found");
 		}
 
-		Optional<Category> mexicanOptional = categoryRepository.findByName("Mexican");
+		Optional<Category> mexicanOptional = categoryRepository.findByDescription("Mexican");
 		if (!mexicanOptional.isPresent()) {
 			throw new RuntimeException("Expected UDM not found");
 		}

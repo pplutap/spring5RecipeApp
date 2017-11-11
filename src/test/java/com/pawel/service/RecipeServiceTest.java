@@ -1,5 +1,7 @@
 package com.pawel.service;
 
+import com.pawel.converters.RecipeCommandToRecipe;
+import com.pawel.converters.RecipeToRecipeCommand;
 import com.pawel.domain.Recipe;
 import com.pawel.repositories.RecipeRepository;
 import com.pawel.service.impl.RecipeServiceImpl;
@@ -29,6 +31,12 @@ public class RecipeServiceTest {
 	
 	@Mock
 	private RecipeRepository recipeRepository;
+
+	@Mock
+	private RecipeCommandToRecipe recipeCommandToRecipe;
+
+	@Mock
+	private RecipeToRecipeCommand recipeToRecipeCommand;
 	
 	@Test
 	public void getRecipes() throws Exception {
@@ -64,6 +72,6 @@ public class RecipeServiceTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
-		recipeService = new RecipeServiceImpl(recipeRepository);
+		recipeService = new RecipeServiceImpl(recipeRepository, recipeToRecipeCommand, recipeCommandToRecipe);
 	}
 }

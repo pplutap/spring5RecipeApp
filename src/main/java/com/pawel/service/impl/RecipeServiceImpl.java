@@ -1,11 +1,15 @@
 package com.pawel.service.impl;
 
+import com.pawel.commands.RecipeCommand;
+import com.pawel.converters.RecipeCommandToRecipe;
+import com.pawel.converters.RecipeToRecipeCommand;
 import com.pawel.domain.Recipe;
 import com.pawel.repositories.RecipeRepository;
 import com.pawel.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -18,9 +22,14 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
 	private final RecipeRepository recipeRepository;
+	private final RecipeToRecipeCommand recipeToRecipeCommand;
+	private final RecipeCommandToRecipe recipeCommandToRecipe;
 
-	public RecipeServiceImpl(RecipeRepository recipeRepository) {
+	public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeToRecipeCommand recipeToRecipeCommand,
+			RecipeCommandToRecipe recipeCommandToRecipe) {
 		this.recipeRepository = recipeRepository;
+		this.recipeToRecipeCommand = recipeToRecipeCommand;
+		this.recipeCommandToRecipe = recipeCommandToRecipe;
 	}
 
 	@Override
@@ -41,5 +50,14 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 
 		return recipeOptional.get();
+	}
+
+	@Override
+	@Transactional
+	public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+		Recipe detachedRecipe = recipeCommandToRecipe.convert(recipeCommand);
+		Recipe saved = recipeRepository.save(detachedRecipe);
+		log.debug("Saved recipe: " + saved.getId());
+		return recipeToRecipeCommand.convert(saved);
 	}
 }
