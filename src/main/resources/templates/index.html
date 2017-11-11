@@ -33,6 +33,7 @@
                                         <th>View</th>
                                     </tr>
                                 </thead>
+                                <!--/*@thymesVar id="recipes" type="List<com.pawel.domain.Recipe>"*/-->
                                 <tr th:each="recipe : ${recipes}">
                                     <!--/*@thymesVar id="recipe" type="com.pawel.domain.Recipe"*/-->
                                     <td th:text="${recipe.id}">123</td>
