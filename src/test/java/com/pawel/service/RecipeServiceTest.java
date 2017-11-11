@@ -74,4 +74,11 @@ public class RecipeServiceTest {
 
 		recipeService = new RecipeServiceImpl(recipeRepository, recipeToRecipeCommand, recipeCommandToRecipe);
 	}
+
+	@Test
+	public void testDeleteById() throws Exception {
+		recipeService.deleteById(2L);
+
+		verify(recipeRepository, times(1)).deleteById(anyLong());
+	}
 }
