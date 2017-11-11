@@ -31,6 +31,7 @@
                                         <th>ID</th>
                                         <th>Description</th>
                                         <th>View</th>
+                                        <th>Update</th>
                                     </tr>
                                 </thead>
                                 <!--/*@thymesVar id="recipes" type="List<com.pawel.domain.Recipe>"*/-->
@@ -39,7 +40,10 @@
                                     <td th:text="${recipe.id}">123</td>
                                     <td th:text="${recipe.description}">Tasty Goodness</td>
                                     <td>
-                                        <a href="#" th:href="@{'recipe/show/' + ${recipe.id}}">View</a>
+                                        <a href="#" th:href="@{'recipe/' + ${recipe.id} + '/show'}">View</a>
+                                    </td>
+                                    <td>
+                                        <a href="#" th:href="@{'recipe/' + ${recipe.id} + '/update'}">Update</a>
                                     </td>
                                 </tr>
                             </table>
