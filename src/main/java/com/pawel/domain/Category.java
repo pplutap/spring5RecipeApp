@@ -2,6 +2,7 @@ package com.pawel.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"recipes"})
+@ToString(exclude = {"recipes"})
 public class Category {
 
 	@Id
