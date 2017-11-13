@@ -94,7 +94,7 @@ public class IngredientControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("recipe/ingredient/ingredientform"))
 				.andExpect(model().attributeExists("ingredient"))
-				.andExpect(model().attributeExists("uomList"));
+				.andExpect(model().attributeExists("unitOfMeasureList"));
 	}
 
 	@Test
@@ -132,6 +132,15 @@ public class IngredientControllerTest {
 				.andExpect(view().name("recipe/ingredient/ingredientform"))
 				.andExpect(model().attributeExists("ingredient"))
 				.andExpect(model().attributeExists("unitOfMeasureList"));
+	}
+
+	@Test
+	public void testDeleteAction() throws Exception {
+		mockMvc.perform(get("/recipe/1/ingredient/6/delete"))
+				.andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/recipe/1/ingredients"));
+		verify(ingredientService, times(1)).deleteById(anyLong(), anyLong());
+
 	}
 
 }
