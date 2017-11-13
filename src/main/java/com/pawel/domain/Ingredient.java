@@ -1,7 +1,8 @@
 package com.pawel.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -16,7 +17,8 @@ import java.math.BigDecimal;
 /**
  * Created by Pawel on 2017-10-28.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @EqualsAndHashCode(exclude = {"recipe"})
 @ToString(exclude = {"recipe"})

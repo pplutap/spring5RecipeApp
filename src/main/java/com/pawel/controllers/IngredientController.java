@@ -1,6 +1,8 @@
 package com.pawel.controllers;
 
 import com.pawel.commands.IngredientCommand;
+import com.pawel.commands.RecipeCommand;
+import com.pawel.commands.UnitOfMeasureCommand;
 import com.pawel.service.IngredientService;
 import com.pawel.service.RecipeService;
 import com.pawel.service.UnitOfMeasureService;
@@ -62,5 +64,21 @@ public class IngredientController {
 		log.debug("Saved ingredient id: " + command.getId());
 
 		return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+	}
+
+	@GetMapping
+	@RequestMapping("recipe/{recipeId}/ingredient/new")
+	public String newRecipe(@PathVariable String recipeId, Model model) {
+
+		RecipeCommand recipeCommand = recipeService.findByCommandId(Long.valueOf(recipeId));
+
+		IngredientCommand ingredientCommand = new IngredientCommand();
+		ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+		model.addAttribute("ingredient", ingredientCommand);
+
+		ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+
+		model.addAttribute("unitOfMeasureList", unitOfMeasureService.listAllUoms());
+		return "recipe/ingredient/ingredientform";
 	}
 }

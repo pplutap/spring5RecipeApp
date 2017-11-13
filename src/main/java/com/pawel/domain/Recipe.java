@@ -1,6 +1,7 @@
 package com.pawel.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,7 +22,8 @@ import java.util.Set;
 /**
  * Created by Pawel on 2017-10-28.
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 
