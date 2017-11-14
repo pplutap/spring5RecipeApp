@@ -4,6 +4,7 @@ import com.pawel.commands.RecipeCommand;
 import com.pawel.converters.RecipeCommandToRecipe;
 import com.pawel.converters.RecipeToRecipeCommand;
 import com.pawel.domain.Recipe;
+import com.pawel.exceptions.NotFoundException;
 import com.pawel.repositories.RecipeRepository;
 import com.pawel.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
 		Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
 		if (!recipeOptional.isPresent()) {
-			throw new RuntimeException("Recipe not found");
+			throw new NotFoundException("Recipe not found");
 		}
 
 		return recipeOptional.get();

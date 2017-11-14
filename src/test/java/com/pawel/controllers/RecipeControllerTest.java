@@ -2,6 +2,7 @@ package com.pawel.controllers;
 
 import com.pawel.commands.RecipeCommand;
 import com.pawel.domain.Recipe;
+import com.pawel.exceptions.NotFoundException;
 import com.pawel.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,6 +52,17 @@ public class RecipeControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("recipe/show"))
 				.andExpect(model().attributeExists("recipe"));
+	}
+
+	@Test
+	public void testGetNewRecipeNotFound() throws Exception {
+		Recipe recipe = new Recipe();
+		recipe.setId(1L);
+
+		when(service.findById(anyLong())).thenThrow(NotFoundException.class);
+
+		mockMvc.perform(get("/recipe/1/show"))
+				.andExpect(status().isNotFound());
 	}
 
 	@Test

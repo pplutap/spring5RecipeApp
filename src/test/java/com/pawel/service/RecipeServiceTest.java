@@ -3,6 +3,7 @@ package com.pawel.service;
 import com.pawel.converters.RecipeCommandToRecipe;
 import com.pawel.converters.RecipeToRecipeCommand;
 import com.pawel.domain.Recipe;
+import com.pawel.exceptions.NotFoundException;
 import com.pawel.repositories.RecipeRepository;
 import com.pawel.service.impl.RecipeServiceImpl;
 import org.junit.Before;
@@ -66,6 +67,13 @@ public class RecipeServiceTest {
 		assertNotNull("Null recipe returned", returnedRecipe);
 		verify(recipeRepository, times(1)).findById(anyLong());
 		verify(recipeRepository, never()).findAll();
+	}
+
+	@Test(expected = NotFoundException.class)
+	public void getRecipeByIdTestNotFound() throws Exception {
+		Optional<Recipe> recipeOptional = Optional.empty();
+		when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+		Recipe result = recipeService.findById(1L);
 	}
 
 	@Before
