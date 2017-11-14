@@ -55,14 +55,15 @@ public class RecipeControllerTest {
 	}
 
 	@Test
-	public void testGetNewRecipeNotFound() throws Exception {
+	public void testGetRecipeNotFound() throws Exception {
 		Recipe recipe = new Recipe();
 		recipe.setId(1L);
 
 		when(service.findById(anyLong())).thenThrow(NotFoundException.class);
 
 		mockMvc.perform(get("/recipe/1/show"))
-				.andExpect(status().isNotFound());
+				.andExpect(status().isNotFound())
+				.andExpect(view().name("404error"));
 	}
 
 	@Test
