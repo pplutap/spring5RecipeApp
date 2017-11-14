@@ -53,7 +53,7 @@ public class IngredientControllerTest {
 	public void testListIngredient() throws Exception {
 		//given
 		RecipeCommand recipeCommand = new RecipeCommand();
-		when(recipeService.findByCommandId(anyLong())).thenReturn(recipeCommand);
+		when(recipeService.findCommandById(anyLong())).thenReturn(recipeCommand);
 
 		//when
 		mockMvc.perform(get("/recipe/1/ingredients"))
@@ -62,7 +62,7 @@ public class IngredientControllerTest {
 				.andExpect(model().attributeExists("recipe"));
 
 		//then
-		verify(recipeService, times(1)).findByCommandId(anyLong());
+		verify(recipeService, times(1)).findCommandById(anyLong());
 	}
 
 	@Test
@@ -123,7 +123,7 @@ public class IngredientControllerTest {
 		recipeCommand.setId(1L);
 
 		//when
-		when(recipeService.findByCommandId(anyLong())).thenReturn(recipeCommand);
+		when(recipeService.findCommandById(anyLong())).thenReturn(recipeCommand);
 		when(unitOfMeasureService.listAllUoms()).thenReturn(new HashSet<>());
 
 		//then

@@ -84,7 +84,7 @@ public class RecipeControllerTest {
 		RecipeCommand command = new RecipeCommand();
 		command.setId(2L);
 
-		when(service.findByCommandId(anyLong())).thenReturn(command);
+		when(service.findCommandById(anyLong())).thenReturn(command);
 
 		mockMvc.perform(get("/recipe/1/update"))
 				.andExpect(status().isOk())
