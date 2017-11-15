@@ -121,4 +121,21 @@ public class RecipeControllerTest {
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/"));
 	}
+
+	@Test
+	public void testPostNewRecipeFormValidationFail() throws Exception {
+		RecipeCommand command = new RecipeCommand();
+		command.setId(2L);
+
+		when(service.saveRecipeCommand(any())).thenReturn(command);
+
+		mockMvc.perform(post("/recipe")
+			.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+			.param("id", "")
+			.param("directions", "some directions")
+		)
+			.andExpect(status().isOk())
+			.andExpect(model().attributeExists("recipe"))
+			.andExpect(view().name("recipe/recipeform"));
+	}
 }
