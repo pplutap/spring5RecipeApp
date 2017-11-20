@@ -42,5 +42,5 @@ jobs:
 
       - run:
          name: Send to CodeCov
-         command: bash <(curl -s https://codecov.io/hash
+         command: bash <(curl -s https://codecov.io/hash)
 
