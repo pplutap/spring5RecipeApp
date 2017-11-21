@@ -70,7 +70,7 @@ public class IngredientController {
 		ingredientCommand.setRecipeId(Long.valueOf(recipeId));
 		model.addAttribute("ingredient", ingredientCommand);
 
-		ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+		ingredientCommand.setUom(new UnitOfMeasureCommand());
 
 		model.addAttribute("unitOfMeasureList", unitOfMeasureService.listAllUoms());
 		return "recipe/ingredient/ingredientform";

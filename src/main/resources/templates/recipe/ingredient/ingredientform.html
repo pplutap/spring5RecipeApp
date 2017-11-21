@@ -48,7 +48,7 @@
                                         <!--/*@thymesVar id="uomEach" type="com.pawel.commands.UnitOfMeasureCommand"*/-->
                                         <option th:each="uomEach : ${unitOfMeasureList}"
                                                 th:value="${uomEach.id}"
-                                                th:selected="${uomEach.id.equals(ingredient.unitOfMeasure.id)}"
+                                                th:selected="${uomEach.id.equals(ingredient.uom.id)}"
                                                 th:text="${uomEach.description}">Each</option>
                                     </select>
                                 </div>
